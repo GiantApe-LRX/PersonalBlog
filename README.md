@@ -35,10 +35,10 @@
 ```sql
 create table `user`(
 	`user_id` bigint not null auto_increment comment '用户编号',
-    `username` varchar(32) not null comment '用户名',
+    `username` varchar(32) not null unique comment '用户名',
 	`password` varchar(64) not null comment '密码',
     `salt` int not null comment '盐值',
-    `type` tinyint(3) not null default `0` comment '用户类型，0-普通用户，1-管理员，默认为0',
+    `type` tinyint(3) not null default '0' comment '用户类型，0-普通用户，1-管理员，默认为0',
     primary key(`user_id`)
 ) comment '用户信息表';
 ```
@@ -50,7 +50,7 @@ create table `article`(
 	`article_id` bigint not null auto_increment comment '文章编号',
     `user_id` bigint not null comment '用户编号',
     `article_title` text not null comment '文章标题',
-    `atricle_content` longtext not null comment '文章内容',
+    `article_content` longtext not null comment '文章内容',
     `create_time` timestamp not null default current_timestamp comment '创建时间',
 	`update_time` timestamp not null default current_timestamp on update current_timestamp comment '更新时间',
 	primary key(`article_id`)
@@ -65,9 +65,9 @@ create table `comment`(
     `user_id` bigint not null comment '用户编号',
     `article_id` bigint not null comment '文章编号',
     `comment_content` text not null comment '评论内容',
-    `parent_comment_id` bigint not null default 0 comment '父级评论编号, 为0则表示评论文章，否则评论指定编号的评论，默认为0'
+    `parent_comment_id` bigint not null default '0' comment '父级评论编号, 为0则表示评论文章，否则评论指定编号的评论，默认为0',
     `create_time` timestamp not null default current_timestamp comment '创建时间',
-	`update_time` timestamp not null default current_timestamp on update current_timestamp comment '更新时间',
+    `update_time` timestamp not null default current_timestamp on update current_timestamp comment '更新时间',
     primary key(`comment_id`)
 ) comment '评论信息表';
 ```
