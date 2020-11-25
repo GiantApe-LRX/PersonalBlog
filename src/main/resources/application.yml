@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/personal_blog?useSSL=false&useUnicode=true&charsetEnocding=UTF-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+  jpa:
+    show-sql: true
+server:
+  port: 8080
+  servlet:
+    context-path: /blog
